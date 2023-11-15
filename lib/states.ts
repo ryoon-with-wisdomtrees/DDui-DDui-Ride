@@ -13,7 +13,7 @@ export interface sourceInterface {
 }
 export const sourceState = atom({
   key: "source",
-  default: { lat: null, lng: null },
+  default: { lat: 0, lng: 0, name: "", label: "" },
 });
 
 // export const source
@@ -22,5 +22,5 @@ export interface destinationInterface {
 }
 export const destinationState = atom({
   key: "destination",
-  default: {},
+  default: { lat: 0, lng: 0, name: "", label: "" },
 });

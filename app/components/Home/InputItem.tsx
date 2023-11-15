@@ -35,16 +35,16 @@ const InputItem = ({ type, placeholder }: Props) => {
           setSource({
             lat: place.geometry.location.lat(),
             lng: place.geometry.location.lng(),
-            name: place.formatted_address,
-            label: place.name,
+            name: place.formatted_address as string,
+            label: place.name as string,
           });
         }
         if (type === "destination") {
           setDestination({
             lat: place.geometry.location.lat(),
             lng: place.geometry.location.lng(),
-            name: place.formatted_address,
-            label: place.name,
+            name: place.formatted_address as string,
+            label: place.name as string,
           });
         }
       }

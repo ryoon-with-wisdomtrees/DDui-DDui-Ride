@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
+import { GoogleMap, MarkerF, useJsApiLoader } from "@react-google-maps/api";
 import { useRecoilState } from "recoil";
 import { destinationState, sourceState } from "@/lib/states";
 
@@ -13,9 +13,19 @@ function isEmptyObj(obj: any) {
   return false;
 }
 
+const containerStyle = {
+  width: "100%",
+  height: "70vh",
+};
+
 const GoogleMapSection = (props: Props) => {
   const [source, setSource] = useRecoilState(sourceState);
   const [destination, setDestination] = useRecoilState(destinationState);
+  const [center, setCenter]: any = useState<any>({
+    lat: 49.28488100000001,
+    lng: -123.122643,
+  });
+
   const getUserLocation = () => {
     navigator.geolocation.getCurrentPosition(function (pos) {
       console.log(pos);
@@ -24,16 +34,6 @@ const GoogleMapSection = (props: Props) => {
         lng: pos.coords.longitude,
       });
     });
-  };
-  // {
-  //   lat: -3.745,
-  //   lng: -38.523,
-  // }
-  const [center, setCenter]: any = useState<any>();
-
-  const containerStyle = {
-    width: "100%",
-    height: "70vh",
   };
 
   // const { isLoaded } = useJsApiLoader({
@@ -45,12 +45,31 @@ const GoogleMapSection = (props: Props) => {
 
   useEffect(() => {
     if (!isEmptyObj(source) && map) {
+      console.log("source::::::::::::", source);
+      map.panTo({
+        lat: source.lat,
+        lng: source.lng,
+      });
       setCenter({
         lat: source.lat,
         lng: source.lng,
       });
     }
   }, [source]);
+
+  useEffect(() => {
+    if (!isEmptyObj(destination) && map) {
+      console.log("destination::::::::::::", destination);
+      // map.panTo({
+      //   lat: destination.lat,
+      //   lng: destination.lng,
+      // });
+      setCenter({
+        lat: destination.lat,
+        lng: destination.lng,
+      });
+    }
+  }, [destination]);
   const onLoad = useCallback(function callback(map: any) {
     // This is just an example of getting and using the map instance!!! don't just blindly copy!
     const bounds = new window.google.maps.LatLngBounds(center);
@@ -63,9 +82,9 @@ const GoogleMapSection = (props: Props) => {
     setMap(null);
   }, []);
 
-  useEffect(() => {
-    getUserLocation();
-  });
+  // useEffect(() => {
+  //   getUserLocation();
+  // });
 
   return (
     <GoogleMap
@@ -79,7 +98,42 @@ const GoogleMapSection = (props: Props) => {
       options={{
         mapId: process.env.NEXT_PUBLIC_GOOGLE_MAP_API as string,
       }}
-    ></GoogleMap>
+    >
+      {!isEmptyObj(source) ? (
+        <MarkerF
+          position={{ lat: source.lat, lng: source.lng }}
+          icon={{
+            url: "/Start.svg",
+            scaledSize: {
+              width: 50,
+              height: 50,
+              equals(other) {
+                return true;
+              },
+            },
+          }}
+        ></MarkerF>
+      ) : (
+        <></>
+      )}
+      {!isEmptyObj(destination) ? (
+        <MarkerF
+          position={{ lat: destination.lat, lng: destination.lng }}
+          icon={{
+            url: "/Arrive.svg",
+            scaledSize: {
+              width: 50,
+              height: 50,
+              equals(other) {
+                return true;
+              },
+            },
+          }}
+        ></MarkerF>
+      ) : (
+        <></>
+      )}
+    </GoogleMap>
   );
 };
 
