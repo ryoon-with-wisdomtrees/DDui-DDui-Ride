@@ -13,10 +13,10 @@ const GoogleMapSection = (props: Props) => {
     lat: -3.745,
     lng: -38.523,
   };
-  const { isLoaded } = useJsApiLoader({
-    id: "google-map-script2",
-    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY as string,
-  });
+  // const { isLoaded } = useJsApiLoader({
+  //   id: "google-map-script2",
+  //   googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY as string,
+  // });
 
   const [map, setMap] = useState<any>();
 
@@ -32,20 +32,15 @@ const GoogleMapSection = (props: Props) => {
     setMap(null);
   }, []);
 
-  return isLoaded ? (
+  return (
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={center}
       zoom={10}
       onLoad={(map: google.maps.Map) => {
-        // console.log("ddd??", typeof map);
-        // console.log(map);
-        // const bounds = new window.google.maps.LatLngBounds(center);
-        // map.fitBounds(bounds);
-
         setMap(map);
       }}
-      // onUnmount={onUnmount}
+      onUnmount={onUnmount}
       options={{
         mapId: process.env.NEXT_PUBLIC_GOOGLE_MAP_API as string,
       }}
@@ -53,8 +48,6 @@ const GoogleMapSection = (props: Props) => {
       {/* Child components, such as markers, info windows, etc. */}
       <></>
     </GoogleMap>
-  ) : (
-    <></>
   );
 };
 

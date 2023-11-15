@@ -5,14 +5,20 @@ import GoogleMapSection from "./components/Home/GoogleMapSection";
 import { SourceConext } from "@/context/SourceContext";
 import { useState } from "react";
 import { RecoilRoot, atom } from "recoil";
+import { LoadScript } from "@react-google-maps/api";
 
 export default function Home() {
   return (
     <RecoilRoot>
-      <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-5">
-        <SearchSection />
-        <GoogleMapSection />
-      </div>
+      <LoadScript
+        googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY as string}
+        libraries={["places"]} // place 정보에 access가능하게 하기 위함
+      >
+        <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-5">
+          <SearchSection />
+          <GoogleMapSection />
+        </div>
+      </LoadScript>
     </RecoilRoot>
   );
 }

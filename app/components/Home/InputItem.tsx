@@ -61,7 +61,7 @@ const InputItem = ({ type, placeholder }: Props) => {
       /> */}
       {/**어떤 apicall 없이도 장소검색이 가능한 라이브러리 */}
       <GooglePlacesAutocomplete
-        apiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY} //for client side
+        // apiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY} //for client side
         selectProps={{
           value,
           onChange: (place) => {
