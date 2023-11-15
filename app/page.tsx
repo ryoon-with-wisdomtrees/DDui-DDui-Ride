@@ -14,7 +14,7 @@ export default function Home() {
         googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY as string}
         libraries={["places"]} // place 정보에 access가능하게 하기 위함
       >
-        <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="p-6 flex flex-row  gap-5">
           <SearchSection />
           <GoogleMapSection />
         </div>

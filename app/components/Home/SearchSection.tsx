@@ -20,7 +20,7 @@ const SearchSection = (props: Props) => {
     // }
   }, [source, destination]);
   return (
-    <div className="p-2 md:pd-6 border-[2px] rounded-xl">
+    <div className="p-2 md:pd-6 border-[2px] rounded-xl w-[40%]">
       <p className="text-[20px] font-bold">Get a ride</p>
       <InputItem type="source" placeholder="Pickup Location" />
       <InputItem type="destination" placeholder="Dropoff Location" />

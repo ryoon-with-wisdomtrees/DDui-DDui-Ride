@@ -13,7 +13,7 @@ export interface sourceInterface {
 }
 export const sourceState = atom({
   key: "source",
-  default: {},
+  default: { lat: null, lng: null },
 });
 
 // export const source
