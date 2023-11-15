@@ -22,8 +22,8 @@ const Header = (props: Props) => {
       <div className="flex gap-24 items-center">
         <Image src="/Uber-Logo.png" alt="logo" width={70} height={70} />
         <div className=" flex flex-row gap-6 items-center ">
-          {headerMenu.map((item) => (
-            <div className="flex flex-row gap-2 items-center ">
+          {headerMenu.map((item, index) => (
+            <div key={index} className="flex flex-row gap-2 items-center ">
               <Image src={item.icon} alt="icon" width={17} height={17} />
               <h2 className="text-[14px] font-medium">{item.name}</h2>
             </div>

@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Inter, Nanum_Gothic_Coding } from "next/font/google";
+import { Inter, Nanum_Gothic_Coding, Nanum_Gothic } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import Header from "./components/Header";
 
-const googleFont = Nanum_Gothic_Coding({ subsets: ["latin"], weight: ["400"] });
+const googleFont = Nanum_Gothic({ subsets: ["latin"], weight: ["400"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
