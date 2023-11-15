@@ -65,8 +65,10 @@ const InputItem = ({ type, placeholder }: Props) => {
         selectProps={{
           value,
           onChange: (place) => {
-            getLatAndLng(place, type);
-            setValue(place);
+            if (place) {
+              getLatAndLng(place, type);
+              setValue(place);
+            }
           },
           placeholder: placeholder,
           isClearable: true,
