@@ -11,7 +11,7 @@ export default function Page() {
         height={1000}
         className="object-contain h-hull w-full"
       />
-      <div className="absolute  left-2/4 right-2/4  flex flex-row justify-center items-center ">
+      <div className="absolute top-40 left-2/4 right-2/4  flex flex-row justify-center items-center ">
         <SignIn />
       </div>
     </div>

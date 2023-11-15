@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Nanum_Gothic_Coding } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import Header from "./components/Header";
 
-const inter = Inter({ subsets: ["latin"] });
+const googleFont = Nanum_Gothic_Coding({ subsets: ["latin"], weight: ["400"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,7 +19,10 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={inter.className}>{children}</body>
+        <body className={googleFont.className}>
+          <Header />
+          {children}
+        </body>
       </html>
     </ClerkProvider>
   );

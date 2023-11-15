@@ -12,7 +12,7 @@ export default function Page() {
         className="object-contain h-hull w-full"
       />
       <div
-        className="absolute top-20 
+        className="absolute top-40    
       left-2/4 right-2/4  flex flex-row justify-center items-center "
       >
         <SignUp />
