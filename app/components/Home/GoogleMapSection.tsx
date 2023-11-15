@@ -1,5 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { GoogleMap, MarkerF, useJsApiLoader } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  MarkerF,
+  OverlayView,
+  OverlayViewF,
+  useJsApiLoader,
+} from "@react-google-maps/api";
 import { useRecoilState } from "recoil";
 import { destinationState, sourceState } from "@/lib/states";
 
@@ -112,7 +118,18 @@ const GoogleMapSection = (props: Props) => {
               },
             },
           }}
-        ></MarkerF>
+        >
+          <OverlayViewF
+            position={{ lat: source.lat, lng: source.lng }}
+            mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+          >
+            <div className="p-2 bg-white bg-opacity-60 inline-block border-[1px solid #7b376f] rounded-2xl">
+              <p className="text-[#7b376f] font-bold text-[16px]">
+                {source.label}
+              </p>
+            </div>
+          </OverlayViewF>
+        </MarkerF>
       ) : (
         <></>
       )}
@@ -129,7 +146,18 @@ const GoogleMapSection = (props: Props) => {
               },
             },
           }}
-        ></MarkerF>
+        >
+          <OverlayViewF
+            position={{ lat: destination.lat, lng: destination.lng }}
+            mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+          >
+            <div className="p-2 bg-white bg-opacity-60 inline-block border-[1px solid #427231] rounded-2xl">
+              <p className="text-[#427231] font-bold text-[16px]">
+                {destination.label}
+              </p>
+            </div>
+          </OverlayViewF>
+        </MarkerF>
       ) : (
         <></>
       )}
