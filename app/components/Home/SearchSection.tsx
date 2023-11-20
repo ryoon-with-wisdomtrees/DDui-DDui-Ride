@@ -58,31 +58,41 @@ const SearchSection = (props: Props) => {
     });
   };
 
-  useEffect(() => {
-    //도착지 출발지 무엇을 먼저 설정할지 모르니까 양쪽에.
-    if (!isEmptyObj(destination) && !isEmptyObj(source)) {
-      console.log("!isEmptyObj(destination) && !isEmptyObj(source)");
-      directionRoute();
-      // directionsRenderer.setMap(map);
-      // directionsRenderer.setPanel(document.getElementById("directionsPanel"));
-    }
-  }, [source]);
+  // useEffect(() => {
+  //   //도착지 출발지 무엇을 먼저 설정할지 모르니까 양쪽에.
+  //   if (!isEmptyObj(destination) && !isEmptyObj(source)) {
+  //     console.log("!isEmptyObj(destination) && !isEmptyObj(source)");
+  //     directionRoute();
+  //     // directionsRenderer.setMap(map);
+  //     // directionsRenderer.setPanel(document.getElementById("directionsPanel"));
+  //   }
+  // }, [source]);
 
-  useEffect(() => {
-    if (!isEmptyObj(destination) && !isEmptyObj(source)) {
-      console.log("!isEmptyObj(destination) && !isEmptyObj(source)");
-      directionRoute();
-      // directionsRenderer.setMap(map);
-      // directionsRenderer.setPanel(document.getElementById("directionsPanel"));
-    }
-  }, [destination]);
+  // useEffect(() => {
+  //   if (!isEmptyObj(destination) && !isEmptyObj(source)) {
+  //     console.log("!isEmptyObj(destination) && !isEmptyObj(source)");
+  //     directionRoute();
+  //     // directionsRenderer.setMap(map);
+  //     // directionsRenderer.setPanel(document.getElementById("directionsPanel"));
+  //   }
+  // }, [destination]);
 
   return (
     <div className="p-2 md:pd-6 border-[2px] rounded-xl w-[40%]">
       <p className="text-[20px] font-bold">뛰뛰 경로</p>
       <InputItem type="source" placeholder="Pickup 위치" />
       <InputItem type="destination" placeholder="Dropoff 위치" />
-      <Button className="p-3 bg-black w-full mt-5 text-white rounded-lg">
+      <Button
+        className="p-3 bg-black w-full mt-5 text-white rounded-lg"
+        onClick={() => {
+          if (!isEmptyObj(destination) && !isEmptyObj(source)) {
+            console.log("!isEmptyObj(destination) && !isEmptyObj(source)");
+            directionRoute();
+            // directionsRenderer.setMap(map);
+            // directionsRenderer.setPanel(document.getElementById("directionsPanel"));
+          }
+        }}
+      >
         Search
       </Button>
     </div>

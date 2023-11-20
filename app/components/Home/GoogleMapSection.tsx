@@ -23,8 +23,7 @@ const containerStyle = {
 };
 
 const GoogleMapSection = (props: Props) => {
-  // var directionsRenderer = new google.maps.DirectionsRenderer();
-  const directionsRenderer = new google.maps.DirectionsRenderer();
+  // const directionsRenderer = new google.maps.DirectionsRenderer();
   const [source, setSource] = useRecoilState(sourceState);
   const [destination, setDestination] = useRecoilState(destinationState);
   const [directionRoutePoints, setDirectionRoutePoints] = useRecoilState(
