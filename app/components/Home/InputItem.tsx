@@ -1,14 +1,7 @@
 "use client";
-import { Input } from "@/components/ui/input";
 import { destinationState, sourceState } from "@/lib/states";
-import {
-  CheckCircle,
-  CircleDashed,
-  CircleDot,
-  CircleDotDashedIcon,
-} from "lucide-react";
-import Image from "next/image";
-import React, { useState } from "react";
+import { CircleDot, CircleDotDashedIcon } from "lucide-react";
+import { useState } from "react";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 import { useRecoilState } from "recoil";
 

@@ -24,3 +24,8 @@ export const destinationState = atom({
   key: "destination",
   default: { lat: 0, lng: 0, name: "", label: "" },
 });
+
+export const setDirectionRoutePointsState = atom({
+  key: "directionRoutePoints",
+  default: <any>{},
+});
