@@ -29,3 +29,11 @@ export const setDirectionRoutePointsState = atom({
   key: "directionRoutePoints",
   default: <any>{},
 });
+
+export const centerStates = atom({
+  key: "center",
+  default: {
+    lat: 49.28488100000001,
+    lng: -123.122643,
+  },
+});

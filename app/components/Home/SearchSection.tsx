@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import InputItem from "./InputItem";
 import { Button } from "@/components/ui/button";
 import { useRecoilState } from "recoil";
@@ -10,22 +10,16 @@ import {
   sourceState,
 } from "@/lib/states";
 import { isEmptyObj } from "@/lib/utils";
+import CarListOptions from "./CarListOptions";
 
-type Props = {};
-
-const SearchSection = (props: Props) => {
+const SearchSection = () => {
   const [source, setSource] = useRecoilState(sourceState);
   const [destination, setDestination] = useRecoilState(destinationState);
   const [directionRoutePoints, setDirectionRoutePoints] = useRecoilState(
     setDirectionRoutePointsState
   );
-  // useEffect(() => {
-  //   // if (source) {
-  //   console.log("source::", source);
-  //   // } else if (destination) {
-  //   console.log("destination::", destination);
-  //   // }
-  // }, [source, destination]);
+
+  const [distance, setDistance] = useState<any>();
 
   const directionRoute = () => {
     // Google Maps API는 외부 서버를 호출해야 하므로 경로 서비스 액세스는 비동기식입니다.
@@ -58,43 +52,42 @@ const SearchSection = (props: Props) => {
     });
   };
 
-  // useEffect(() => {
-  //   //도착지 출발지 무엇을 먼저 설정할지 모르니까 양쪽에.
-  //   if (!isEmptyObj(destination) && !isEmptyObj(source)) {
-  //     console.log("!isEmptyObj(destination) && !isEmptyObj(source)");
-  //     directionRoute();
-  //     // directionsRenderer.setMap(map);
-  //     // directionsRenderer.setPanel(document.getElementById("directionsPanel"));
-  //   }
-  // }, [source]);
+  const calculateDistance = () => {
+    console.log();
+    const dist = google.maps.geometry.spherical.computeDistanceBetween(
+      {
+        lat: Number(source.lat.toFixed(2)),
+        lng: Number(source.lng.toFixed(2)),
+      },
+      {
+        lat: Number(destination.lat.toFixed(2)),
+        lng: Number(destination.lng.toFixed(2)),
+      }
+    );
 
-  // useEffect(() => {
-  //   if (!isEmptyObj(destination) && !isEmptyObj(source)) {
-  //     console.log("!isEmptyObj(destination) && !isEmptyObj(source)");
-  //     directionRoute();
-  //     // directionsRenderer.setMap(map);
-  //     // directionsRenderer.setPanel(document.getElementById("directionsPanel"));
-  //   }
-  // }, [destination]);
-
+    console.log(dist * 0.000621374);
+    setDistance(dist * 0.000621374);
+  };
   return (
     <div className="p-2 md:pd-6 border-[2px] rounded-xl w-[40%]">
-      <p className="text-[20px] font-bold">뛰뛰 경로</p>
-      <InputItem type="source" placeholder="Pickup 위치" />
-      <InputItem type="destination" placeholder="Dropoff 위치" />
-      <Button
-        className="p-3 bg-black w-full mt-5 text-white rounded-lg"
-        onClick={() => {
-          if (!isEmptyObj(destination) && !isEmptyObj(source)) {
-            console.log("!isEmptyObj(destination) && !isEmptyObj(source)");
-            directionRoute();
-            // directionsRenderer.setMap(map);
-            // directionsRenderer.setPanel(document.getElementById("directionsPanel"));
-          }
-        }}
-      >
-        Search
-      </Button>
+      <div>
+        <p className="text-[20px] font-bold">뛰뛰 경로</p>
+        <InputItem type="source" placeholder="Start 위치" />
+        <InputItem type="destination" placeholder="End 위치" />
+        <Button
+          className="p-3 bg-black w-full mt-5 text-white rounded-lg"
+          onClick={() => {
+            if (!isEmptyObj(destination) && !isEmptyObj(source)) {
+              console.log("!isEmptyObj(destination) && !isEmptyObj(source)");
+              directionRoute();
+              calculateDistance();
+            }
+          }}
+        >
+          경로 검색
+        </Button>
+      </div>
+      {distance && <CarListOptions distance={distance} />}
     </div>
   );
 };

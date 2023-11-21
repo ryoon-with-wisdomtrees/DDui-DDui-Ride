@@ -9,6 +9,7 @@ import {
 } from "@react-google-maps/api";
 import { useRecoilState } from "recoil";
 import {
+  centerStates,
   destinationState,
   setDirectionRoutePointsState,
   sourceState,
@@ -29,20 +30,7 @@ const GoogleMapSection = (props: Props) => {
   const [directionRoutePoints, setDirectionRoutePoints] = useRecoilState(
     setDirectionRoutePointsState
   );
-  const [center, setCenter]: any = useState<any>({
-    lat: 49.28488100000001,
-    lng: -123.122643,
-  });
-
-  const getUserLocation = () => {
-    navigator.geolocation.getCurrentPosition(function (pos) {
-      console.log(pos);
-      setCenter({
-        lat: pos.coords.latitude,
-        lng: pos.coords.longitude,
-      });
-    });
-  };
+  const [center, setCenter]: any = useRecoilState(centerStates);
 
   const [map, setMap] = useState<any>();
 
