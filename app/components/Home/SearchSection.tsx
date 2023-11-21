@@ -9,8 +9,12 @@ import {
   setDirectionRoutePointsState,
   sourceState,
 } from "@/lib/states";
-import { isEmptyObj } from "@/lib/utils";
+import { isEmptyObj, nowInKorea } from "@/lib/utils";
 import CarListOptions from "./CarListOptions";
+import {
+  geocodeByLatLng,
+  geocodeByPlaceId,
+} from "react-google-places-autocomplete";
 
 const SearchSection = () => {
   const [source, setSource] = useRecoilState(sourceState);
@@ -21,24 +25,32 @@ const SearchSection = () => {
 
   const [distance, setDistance] = useState<any>();
 
-  const directionRoute = () => {
+  const directionRoute = async () => {
     // Google Maps API는 외부 서버를 호출해야 하므로 경로 서비스 액세스는 비동기식입니다.
     //따라서 요청 완료 시 실행할 콜백 메서드를 전달해야 합니다. 이 콜백 메서드에서 결과를 처리해야 합니다.
     //경로 서비스에서 두 개 이상의 가능한 여정을 개별 routes[]의 배열로서 반환할 수도 있습니다.
     // Maps JavaScript API에서 경로를 사용하려면 DirectionsService 유형의 객체를 만들고
     // DirectionsService.route()를 호출하여 경로 서비스에 대한 요청을 시작하고
     // 응답 수신 시 실행할 입력 용어와 콜백 메서드가 포함된 DirectionsRequest 객체 리터럴에 이를 전달하세요.
+
+    const nowInKR = await nowInKorea({
+      lat: Number(source.lat),
+      lng: Number(source.lng),
+    });
+
     const DirectionService = new google.maps.DirectionsService();
 
-    console.log("source:", source);
-    console.log("destination:", destination);
+    // console.log("source:", source);
+    // console.log("destination:", destination);
     const request = {
       origin: { lat: source.lat, lng: source.lng } as google.maps.Place,
       destination: {
         lat: destination.lat,
         lng: destination.lng,
       } as google.maps.Place,
-      travelMode: google.maps.TravelMode.TRANSIT,
+      travelMode: nowInKR
+        ? google.maps.TravelMode.TRANSIT
+        : google.maps.TravelMode.DRIVING,
     };
 
     DirectionService.route(request, function (response: any, status: any) {
@@ -53,7 +65,6 @@ const SearchSection = () => {
   };
 
   const calculateDistance = () => {
-    console.log();
     const dist = google.maps.geometry.spherical.computeDistanceBetween(
       {
         lat: Number(source.lat.toFixed(2)),

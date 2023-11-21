@@ -97,6 +97,9 @@ const GoogleMapSection = (props: Props) => {
     // map.fitBounds(bounds);
 
     setMap(map);
+
+    const dodm = new google.maps.places.PlacesService(map);
+    console.log("dodm", dodm);
     // directionsRenderer.setMap(map);
   }, []);
 
@@ -171,17 +174,19 @@ const GoogleMapSection = (props: Props) => {
       ) : (
         <></>
       )}
-      <DirectionsRenderer
-        directions={directionRoutePoints}
-        options={{
-          polylineOptions: {
-            strokeColor: "#393938",
-            strokeWeight: 10,
-          },
-          suppressMarkers: true,
-        }}
-      />
-      <div id="directionsPanel"></div>
+      {!isEmptyObj(source) && !isEmptyObj(destination) && (
+        <DirectionsRenderer
+          directions={directionRoutePoints}
+          options={{
+            polylineOptions: {
+              strokeColor: "#393938",
+              strokeWeight: 10,
+            },
+            suppressMarkers: true,
+          }}
+        />
+      )}
+      {/* <div id="directionsPanel"></div> */}
     </GoogleMap>
   );
 };
