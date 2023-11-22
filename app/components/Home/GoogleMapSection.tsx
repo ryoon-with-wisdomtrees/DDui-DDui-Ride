@@ -121,7 +121,7 @@ const GoogleMapSection = (props: Props) => {
         <MarkerF
           position={{ lat: source.lat, lng: source.lng }}
           icon={{
-            url: "/Start.png",
+            url: "/start.png",
             scaledSize: {
               width: 70,
               height: 70,
@@ -149,7 +149,7 @@ const GoogleMapSection = (props: Props) => {
         <MarkerF
           position={{ lat: destination.lat, lng: destination.lng }}
           icon={{
-            url: "/End.png",
+            url: "/end.png",
             scaledSize: {
               width: 70,
               height: 70,
