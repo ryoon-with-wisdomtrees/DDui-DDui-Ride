@@ -34,7 +34,7 @@ function CheckoutForm({ amount }: any) {
       clientSecret: secretKey,
       elements,
       confirmParams: {
-        return_url: "http://localhost:3000/payment-confirm",
+        return_url: "https://ddui-ddui-ride.vercel.app/payment-confirm",
       },
     });
   };
