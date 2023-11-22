@@ -9,9 +9,9 @@ type Props = {
 
 const CarListItem = ({ car, distance }: Props) => {
   return (
-    <div>
+    <div className="">
       <div className="flex items-center justify-between mt-5 ">
-        <div className="flex item gap-5">
+        <div className="flex items-center gap-5">
           <Image src={car.image} alt="" width={100} height={100} />
           <div>
             <h2 className="font-semibold text-[18px] flex gap-3">{car.name}</h2>

@@ -1,20 +1,16 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import InputItem from "./InputItem";
 import { Button } from "@/components/ui/button";
-import { useRecoilState } from "recoil";
 import {
   destinationState,
   setDirectionRoutePointsState,
   sourceState,
 } from "@/lib/states";
 import { isEmptyObj, nowInKorea } from "@/lib/utils";
+import { useState } from "react";
+import { useRecoilState } from "recoil";
 import CarListOptions from "./CarListOptions";
-import {
-  geocodeByLatLng,
-  geocodeByPlaceId,
-} from "react-google-places-autocomplete";
+import InputItem from "./InputItem";
 
 const SearchSection = () => {
   const [source, setSource] = useRecoilState(sourceState);

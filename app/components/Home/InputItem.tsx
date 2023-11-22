@@ -3,7 +3,6 @@ import { destinationState, sourceState } from "@/lib/states";
 import { CircleDot, CircleDotDashedIcon } from "lucide-react";
 import { useState } from "react";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
-import geocodeByLatLng from "react-google-places-autocomplete";
 import { useRecoilState } from "recoil";
 
 type Props = {

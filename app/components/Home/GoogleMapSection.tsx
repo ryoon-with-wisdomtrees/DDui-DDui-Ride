@@ -1,13 +1,3 @@
-import React, { useCallback, useEffect, useState } from "react";
-import {
-  DirectionsRenderer,
-  GoogleMap,
-  MarkerF,
-  OverlayView,
-  OverlayViewF,
-  useJsApiLoader,
-} from "@react-google-maps/api";
-import { useRecoilState } from "recoil";
 import {
   centerStates,
   destinationState,
@@ -15,6 +5,15 @@ import {
   sourceState,
 } from "@/lib/states";
 import { isEmptyObj } from "@/lib/utils";
+import {
+  DirectionsRenderer,
+  GoogleMap,
+  MarkerF,
+  OverlayView,
+  OverlayViewF,
+} from "@react-google-maps/api";
+import { useCallback, useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
 
 type Props = {};
 
