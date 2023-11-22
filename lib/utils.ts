@@ -20,7 +20,7 @@ export function isEmptyObj(obj: any) {
 export const nowInKorea = async (obj: any) => {
   const geoInfo = await geocodeByLatLng(obj);
   if (geoInfo[0].formatted_address.includes("대한민국" || "South Korea")) {
-    console.log("한국임");
+    console.log("nowInKorea");
     return true;
   } else return false;
 };

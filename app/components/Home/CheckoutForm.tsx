@@ -27,7 +27,7 @@ function CheckoutForm({ amount }: any) {
     });
 
     const secretKey = await res.json();
-    console.log(secretKey);
+    // console.log(secretKey);
 
     const { error } = await stripe!.confirmPayment({
       //https://stackoverflow.com/questions/43951090/typescript-object-is-possibly-null

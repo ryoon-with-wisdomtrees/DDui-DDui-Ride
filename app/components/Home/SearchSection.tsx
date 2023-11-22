@@ -72,7 +72,7 @@ const SearchSection = () => {
       }
     );
 
-    console.log(dist * 0.000621374);
+    // console.log(dist * 0.000621374);
     setDistance(dist * 0.000621374);
   };
   return (
@@ -85,7 +85,7 @@ const SearchSection = () => {
           className="p-3 bg-black w-full mt-5 text-white rounded-lg"
           onClick={() => {
             if (!isEmptyObj(destination) && !isEmptyObj(source)) {
-              console.log("!isEmptyObj(destination) && !isEmptyObj(source)");
+              // console.log("!isEmptyObj(destination) && !isEmptyObj(source)");
               directionRoute();
               calculateDistance();
             }

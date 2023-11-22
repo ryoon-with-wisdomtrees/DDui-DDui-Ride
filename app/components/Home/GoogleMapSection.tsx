@@ -98,7 +98,7 @@ const GoogleMapSection = (props: Props) => {
     setMap(map);
 
     const dodm = new google.maps.places.PlacesService(map);
-    console.log("dodm", dodm);
+    // console.log("dodm", dodm);
     // directionsRenderer.setMap(map);
   }, []);
 

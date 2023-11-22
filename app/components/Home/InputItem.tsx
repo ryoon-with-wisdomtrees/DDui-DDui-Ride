@@ -23,7 +23,7 @@ const InputItem = ({ type, placeholder }: Props) => {
     );
     service.getDetails({ placeId }, (place, status) => {
       if (status === "OK" && place?.geometry && place.geometry.location) {
-        console.log("type: ", type);
+        // console.log("type: ", type);
         if (type === "source") {
           setSource({
             lat: place.geometry.location.lat(),
@@ -43,7 +43,7 @@ const InputItem = ({ type, placeholder }: Props) => {
       }
     });
   };
-  const id = Date.now().toString();
+  // const id = Date.now().toString();
   return (
     <div className="bg-slate-200 p-3 rounded-lg mt-3 flex items-center gap-4">
       {type === "source" ? <CircleDotDashedIcon /> : <CircleDot />}
