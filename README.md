@@ -1,6 +1,6 @@
 # [DDui-DDui-Ride(뛰뛰라이드)](https://ddui-ddui-ride.vercel.app/)
 
-<img width="80%" src="./public/foreadme.gif"/>
+<img width="100%" src="./public/foreadme.gif"/>
 
 ## 제작과정
 
